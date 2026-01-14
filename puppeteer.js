@@ -70,9 +70,7 @@ async function selectRegion(page, regionName) {
     await delay(500);
 
     const regionFound = await page.evaluate((region) => {
-      const elements = document.querySelectorAll(
-        ".UiRegionListBase_button__smgMH"
-      );
+      const elements = document.querySelectorAll(".UiRegionListBase_button__smgMH");
       for (const el of elements) {
         if (el.textContent.includes(region)) {
           el.click();
@@ -85,7 +83,7 @@ async function selectRegion(page, regionName) {
     if (!regionFound) {
       console.log("Регион не найден в списке");
     }
-  } catch (error) {
+  } catch {
     console.log("Селектор региона не найден");
   }
 }
@@ -97,14 +95,10 @@ async function extractProductData(page) {
     let rating = null;
     let reviewCount = null;
 
-    const priceElement = document.querySelector(
-      ".Price_price__QzA8L.Price_size_XL__MHvC1"
-    );
+    const priceElement = document.querySelector(".Price_price__QzA8L.Price_size_XL__MHvC1");
 
     if (priceElement) {
-      price = parseFloat(
-        priceElement.textContent.replace(/[\s\u00A0]/g, "").replace(",", ".")
-      );
+      price = parseFloat(priceElement.textContent.replace(/[\s\u00A0]/g, "").replace(",", "."));
     }
 
     const oldPriceElement = document.querySelector(

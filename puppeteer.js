@@ -32,7 +32,7 @@ async function parseProduct() {
     console.log("Извлекаю данные о товаре...");
     const productData = await extractProductData(page);
 
-    console.log("Делаю скриншот...");
+    console.log("Cкриншот...");
     await page.screenshot({
       path: "screenshot.jpg",
       fullPage: true,
